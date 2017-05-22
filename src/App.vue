@@ -1,15 +1,11 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view></router-view>
+    yolo{{yolo}}
   </div>
 </template>
 
-<script>
-export default {
-  name: 'app'
-}
-</script>
+<script src='./App.ts' lang='ts'></script>
 
 <style>
 #app {

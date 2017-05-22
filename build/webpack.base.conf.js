@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: ['babel-polyfill', './src/main.ts']
   },
   output: {
     path: config.build.assetsRoot,
@@ -19,10 +19,16 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
+    }
+  },
+  resolveLoader: {
+    alias: {
+      //es2015: 'babel-loader?presets=es2015',
+      //ts: 'ts-loader'
     }
   },
   module: {
@@ -31,6 +37,11 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "ts-loader"
       },
       {
         test: /\.js$/,
